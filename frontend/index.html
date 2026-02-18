@@ -56,17 +56,88 @@
             padding: 40px;
         }
         
-        .input-section {
+        /* Блок с дневной нормой калорий */
+        .daily-calories-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 30px;
+            border-left: 5px solid #4CAF50;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .daily-calories-title {
+            font-size: 1.2rem;
+            color: #333;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .daily-calories-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+        
+        .daily-calories-unit {
+            font-size: 1rem;
+            color: #666;
+            margin-left: 5px;
+        }
+        
+        .calories-adjust {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .calories-adjust button {
+            background: white;
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+        
+        .calories-adjust button:hover {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .calories-adjust input {
+            width: 80px;
+            text-align: center;
+            padding: 10px;
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
+        
+        .chat-section {
             margin-bottom: 30px;
         }
         
-        .input-group {
+        .chat-input-group {
             display: flex;
             gap: 10px;
             margin-bottom: 15px;
         }
         
-        input, select, button {
+        .chat-input {
+            flex: 1;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
@@ -74,18 +145,14 @@
             transition: all 0.3s;
         }
         
-        input:focus, select:focus {
+        .chat-input:focus {
             outline: none;
             border-color: #4CAF50;
             box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
         }
         
-        #queryInput {
-            flex: 1;
-        }
-        
-        button {
-            background: #4CAF50;
+        .chat-send-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             cursor: pointer;
@@ -94,16 +161,15 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
         
-        button:hover {
-            background: #45a049;
+        .chat-send-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-        
-        button:active {
-            transform: translateY(0);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
         }
         
         #loading {
@@ -119,7 +185,7 @@
             width: 40px;
             height: 40px;
             animation: spin 1s linear infinite;
-            margin: 0 auto;
+            margin: 0 auto 10px;
         }
         
         @keyframes spin {
@@ -150,6 +216,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
         .food-title {
@@ -163,6 +231,40 @@
             padding: 8px 15px;
             border-radius: 20px;
             font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .calories-breakdown {
+            background: #e8f5e9;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        
+        .daily-percent {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+        
+        .daily-percent-bar {
+            width: 200px;
+            height: 10px;
+            background: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .daily-percent-fill {
+            height: 100%;
+            background: #4CAF50;
+            border-radius: 5px;
+            transition: width 0.3s;
         }
         
         .nutrition-info {
@@ -233,7 +335,7 @@
         }
         
         @media (max-width: 768px) {
-            .input-group {
+            .chat-input-group {
                 flex-direction: column;
             }
             
@@ -243,6 +345,16 @@
             
             .main-content {
                 padding: 20px;
+            }
+            
+            .daily-calories-card {
+                flex-direction: column;
+                align-items: start;
+            }
+            
+            .food-header {
+                flex-direction: column;
+                align-items: start;
             }
         }
     </style>
@@ -254,47 +366,47 @@
                 <i class="fas fa-robot"></i>
                 Food AI Assistant
             </h1>
-            <p class="subtitle">Искусственный интеллект для рекомендаций по питанию</p>
+            <p class="subtitle">Просто напишите, что хотите съесть — я подберу блюдо и посчитаю калории</p>
         </header>
         
         <div class="main-content">
-            <div class="input-section">
-                <div class="input-group">
+            <!-- Блок с дневной нормой калорий -->
+            <div class="daily-calories-card">
+                <div class="daily-calories-title">
+                    <i class="fas fa-fire"></i>
+                    Дневная норма калорий
+                </div>
+                <div style="display: flex; align-items: center; gap: 15px;">
+                    <span class="daily-calories-value" id="dailyCaloriesDisplay">2000</span>
+                    <span class="daily-calories-unit">ккал/день</span>
+                </div>
+                <div class="calories-adjust">
+                    <button id="decreaseCalories" title="Уменьшить норму">−</button>
+                    <input type="number" id="dailyCalories" value="2000" min="1000" max="4000" step="100">
+                    <button id="increaseCalories" title="Увеличить норму">+</button>
+                </div>
+            </div>
+            
+            <!-- Чат-интерфейс -->
+            <div class="chat-section">
+                <div class="chat-input-group">
                     <input 
                         type="text" 
+                        class="chat-input"
                         id="queryInput" 
-                        placeholder="Что вы хотите съесть? Например: 'легкий ужин на 400 калорий' или 'белковый завтрак'..."
+                        placeholder="Опишите, что хотите съесть... Например: 'легкий ужин' или 'что-то на 400 калорий'"
                         autocomplete="off"
                     >
-                    <button id="recommendBtn">
-                        <i class="fas fa-search"></i>
-                        Найти
+                    <button class="chat-send-btn" id="recommendBtn">
+                        <i class="fas fa-paper-plane"></i>
+                        Отправить
                     </button>
-                </div>
-                
-                <div class="input-group">
-                    <select id="mealType">
-                        <option value="">Любой прием пищи</option>
-                        <option value="завтрак">Завтрак</option>
-                        <option value="обед">Обед</option>
-                        <option value="ужин">Ужин</option>
-                        <option value="перекус">Перекус</option>
-                    </select>
-                    
-                    <select id="calories">
-                        <option value="2000">Норма калорий (2000)</option>
-                        <option value="1500">1500 ккал/день</option>
-                        <option value="1800">1800 ккал/день</option>
-                        <option value="2000">2000 ккал/день</option>
-                        <option value="2200">2200 ккал/день</option>
-                        <option value="2500">2500 ккал/день</option>
-                    </select>
                 </div>
             </div>
             
             <div id="loading">
                 <div class="spinner"></div>
-                <p>ИИ анализирует ваш запрос и подбирает идеальный вариант...</p>
+                <p>Анализирую запрос и подбираю идеальное блюдо...</p>
             </div>
             
             <div id="error" class="error">
@@ -303,7 +415,7 @@
             </div>
             
             <div id="resultSection" class="result-section">
-                <h2><i class="fas fa-utensils"></i> Рекомендация ИИ:</h2>
+                <h2><i class="fas fa-utensils"></i> Рекомендация:</h2>
                 <div id="foodResult" class="food-card">
                     <!-- Сюда загрузится результат -->
                 </div>
@@ -320,7 +432,31 @@
     </div>
     
     <script>
+        // ⚠️ ЗАМЕНИТЕ НА ВАШ РЕАЛЬНЫЙ URL BACKEND'А
         const API_URL = 'https://food-ai-assistant-9l1l.onrender.com';
+        // Для локального тестирования:
+        // const API_URL = 'http://localhost:8000';
+        
+        // Элементы DOM
+        const dailyCaloriesInput = document.getElementById('dailyCalories');
+        const dailyCaloriesDisplay = document.getElementById('dailyCaloriesDisplay');
+        
+        // Обновление отображения калорий
+        function updateCaloriesDisplay() {
+            dailyCaloriesDisplay.textContent = dailyCaloriesInput.value;
+        }
+        
+        dailyCaloriesInput.addEventListener('input', updateCaloriesDisplay);
+        
+        document.getElementById('increaseCalories').addEventListener('click', () => {
+            dailyCaloriesInput.value = Math.min(4000, parseInt(dailyCaloriesInput.value) + 100);
+            updateCaloriesDisplay();
+        });
+        
+        document.getElementById('decreaseCalories').addEventListener('click', () => {
+            dailyCaloriesInput.value = Math.max(1000, parseInt(dailyCaloriesInput.value) - 100);
+            updateCaloriesDisplay();
+        });
         
         // Проверка подключения к серверу
         async function checkServerStatus() {
@@ -348,11 +484,10 @@
         // Получение рекомендации
         async function getRecommendation() {
             const query = document.getElementById('queryInput').value.trim();
-            const mealType = document.getElementById('mealType').value;
-            const calories = document.getElementById('calories').value;
+            const dailyCalories = parseInt(document.getElementById('dailyCalories').value);
             
             if (!query) {
-                showError('Пожалуйста, введите ваш запрос');
+                showError('Пожалуйста, опишите что хотите съесть');
                 return;
             }
             
@@ -363,8 +498,8 @@
             
             try {
                 const requestBody = {
-                    query: query + (mealType ? ` ${mealType}` : ''),
-                    user_calories: parseInt(calories),
+                    query: query,
+                    user_calories: dailyCalories,
                     preferences: []
                 };
                 
@@ -379,17 +514,14 @@
                 });
                 
                 if (!response.ok) {
-                    throw new Error(`Ошибка сервера: ${response.status}`);
+                    throw new Error(`HTTP ошибка: ${response.status}`);
                 }
                 
                 const data = await response.json();
-                console.log('Получен ответ:', data);
+                console.log('Получены данные:', data);
                 
-                // Скрываем загрузку
                 document.getElementById('loading').style.display = 'none';
-                
-                // Показываем результат
-                displayRecommendation(data.recommendation);
+                displayRecommendation(data.recommendation, data.analysis, dailyCalories);
                 
             } catch (error) {
                 console.error('Ошибка:', error);
@@ -398,14 +530,41 @@
             }
         }
         
-        // Отображение рекомендации
-        function displayRecommendation(food) {
+        // Отображение рекомендации с акцентом на калории
+        function displayRecommendation(food, analysis, dailyCalories) {
             const resultElement = document.getElementById('foodResult');
             
+            // Расчёт процента от дневной нормы
+            const percentOfDaily = Math.round((food.calories / dailyCalories) * 100);
+            const percentWidth = Math.min(percentOfDaily, 100);
+            
+            let analysisHtml = '';
+            if (analysis) {
+                analysisHtml = `
+                    <div style="font-size: 0.9rem; color: #666; margin-bottom: 10px;">
+                        <i class="fas fa-search"></i> Запрос: "${analysis.original_query}"
+                        ${analysis.target_calories ? ` | Цель: ~${analysis.target_calories} ккал` : ''}
+                    </div>
+                `;
+            }
+            
             resultElement.innerHTML = `
+                ${analysisHtml}
+                
                 <div class="food-header">
                     <h3 class="food-title">${food.name}</h3>
                     <div class="calories-badge">${food.calories} ккал</div>
+                </div>
+                
+                <div class="calories-breakdown">
+                    <div>
+                        <div style="font-size: 1rem; color: #666;">От дневной нормы</div>
+                        <span class="daily-percent">${percentOfDaily}%</span>
+                        <span style="color: #666;"> (${food.calories} / ${dailyCalories} ккал)</span>
+                    </div>
+                    <div class="daily-percent-bar">
+                        <div class="daily-percent-fill" style="width: ${percentWidth}%;"></div>
+                    </div>
                 </div>
                 
                 <p><i class="fas fa-tag"></i> Категория: <strong>${food.category}</strong></p>
@@ -413,26 +572,26 @@
                 
                 <div class="nutrition-info">
                     <div class="nutrient">
-                        <div class="nutrient-value">${food.protein}g</div>
+                        <div class="nutrient-value">${food.protein}г</div>
                         <div class="nutrient-label">Белки</div>
                     </div>
                     <div class="nutrient">
-                        <div class="nutrient-value">${food.carbs}g</div>
+                        <div class="nutrient-value">${food.carbs}г</div>
                         <div class="nutrient-label">Углеводы</div>
                     </div>
                     <div class="nutrient">
-                        <div class="nutrient-value">${food.fats}g</div>
+                        <div class="nutrient-value">${food.fats}г</div>
                         <div class="nutrient-label">Жиры</div>
                     </div>
                 </div>
                 
                 <div class="recipe-section">
                     <h4 class="recipe-title"><i class="fas fa-book"></i> Рецепт:</h4>
-                    <p>${food.recipe}</p>
+                    <p style="white-space: pre-line;">${food.recipe}</p>
                 </div>
                 
-                <div style="margin-top: 15px; color: #666; font-size: 0.9rem;">
-                    <i class="fas fa-lightbulb"></i> Совет: Это блюдо содержит примерно ${Math.round(food.calories/2000*100)}% от вашей дневной нормы калорий.
+                <div style="margin-top: 15px; display: flex; gap: 10px; flex-wrap: wrap;">
+                    ${food.tags.map(tag => `<span style="background: #e0e0e0; padding: 5px 10px; border-radius: 20px; font-size: 0.8rem;">#${tag}</span>`).join('')}
                 </div>
             `;
             
@@ -455,12 +614,9 @@
             }
         });
         
-        // Проверить статус сервера при загрузке
+        // Проверка статуса при загрузке
         window.addEventListener('load', () => {
             checkServerStatus();
-            
-            // Пример запроса для демонстрации
-            document.getElementById('queryInput').value = 'сытный обед';
         });
     </script>
 </body>
