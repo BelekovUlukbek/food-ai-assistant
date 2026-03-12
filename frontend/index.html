@@ -14,7 +14,7 @@
         }
 
         body {
-            background-color: #ffffff; /* белый фон */
+            background-color: #ffffff;
             min-height: 100vh;
             display: flex;
             justify-content: center;
@@ -26,14 +26,14 @@
             max-width: 800px;
             width: 100%;
             background-color: #ffffff;
-            border-radius: 40px; /* овальный контейнер */
+            border-radius: 40px;
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05), 0 5px 15px rgba(0, 0, 0, 0.03);
             overflow: hidden;
             border: 1px solid #f0f0f0;
         }
 
         header {
-            background-color: #f8f9fa; /* очень светлый серый */
+            background-color: #f8f9fa;
             padding: 30px 30px 20px;
             text-align: center;
             border-bottom: 1px solid #eaeef2;
@@ -59,86 +59,106 @@
             padding: 30px;
         }
 
-        /* Блок дневной нормы */
-        .daily-calories-card {
+        /* Карточка с параметрами пользователя */
+        .user-params-card {
             background-color: #f8f9fa;
-            border-radius: 30px; /* сильно скруглён */
+            border-radius: 30px;
             padding: 20px 25px;
             margin-bottom: 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
             border: 1px solid #eaeef2;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.02);
         }
 
-        .daily-calories-title {
+        .params-title {
             font-size: 1.2rem;
             color: #2c3e50;
             display: flex;
             align-items: center;
             gap: 10px;
+            margin-bottom: 20px;
         }
 
-        .daily-calories-value {
+        .params-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .param-item {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .param-item label {
+            font-size: 0.9rem;
+            color: #5a6b7a;
+            font-weight: 500;
+        }
+
+        .param-item input, .param-item select {
+            padding: 12px 15px;
+            border: 1px solid #d0d9e0;
+            border-radius: 30px;
+            font-size: 1rem;
+            background: white;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .param-item input:focus, .param-item select:focus {
+            border-color: #2ecc71;
+            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+        }
+
+        .gender-group {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            padding: 5px 0;
+        }
+
+        .gender-group label {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .gender-group input[type="radio"] {
+            accent-color: #2ecc71;
+            width: 18px;
+            height: 18px;
+        }
+
+        .daily-calories-result {
+            background: white;
+            border-radius: 40px;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border: 1px solid #eaeef2;
+            margin-top: 10px;
+        }
+
+        .daily-label {
+            font-size: 1rem;
+            color: #2c3e50;
+        }
+
+        .daily-value {
             font-size: 2rem;
             font-weight: 700;
-            color: #2ecc71; /* зелёный акцент */
-        }
-
-        .daily-calories-unit {
-            font-size: 1rem;
-            color: #7f8c8d;
-            margin-left: 5px;
-        }
-
-        .calories-adjust {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .calories-adjust button {
-            background-color: white;
-            border: 1px solid #d0d9e0;
-            color: #2c3e50;
-            width: 44px;
-            height: 44px;
-            border-radius: 50%; /* круглые кнопки */
-            font-size: 1.6rem;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: background 0.2s, border-color 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
-        }
-
-        .calories-adjust button:hover {
-            background-color: #f1f5f9;
-            border-color: #2ecc71;
             color: #2ecc71;
         }
 
-        .calories-adjust input {
-            width: 90px;
-            text-align: center;
-            padding: 12px 5px;
-            border: 1px solid #d0d9e0;
-            border-radius: 40px; /* овальное поле */
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: #2c3e50;
-            background-color: white;
-            outline: none;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.02);
-        }
-
-        .calories-adjust input:focus {
-            border-color: #2ecc71;
-            box-shadow: 0 0 0 3px rgba(46, 204, 113, 0.1);
+        .daily-unit {
+            font-size: 1rem;
+            color: #7f8c8d;
+            margin-left: 5px;
         }
 
         /* Чат-интерфейс */
@@ -155,7 +175,7 @@
             flex: 1;
             padding: 18px 25px;
             border: 1px solid #d0d9e0;
-            border-radius: 50px; /* очень скруглённый */
+            border-radius: 50px;
             font-size: 1rem;
             transition: border-color 0.2s, box-shadow 0.2s;
             background-color: white;
@@ -179,7 +199,7 @@
             justify-content: center;
             gap: 8px;
             padding: 0 35px;
-            border-radius: 50px; /* овальная кнопка */
+            border-radius: 50px;
             font-size: 1.1rem;
             transition: background-color 0.2s, transform 0.1s, box-shadow 0.2s;
             box-shadow: 0 4px 12px rgba(46, 204, 113, 0.3);
@@ -195,7 +215,6 @@
             transform: scale(0.98);
         }
 
-        /* Загрузка */
         #loading {
             text-align: center;
             margin: 30px 0;
@@ -217,14 +236,13 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Результат */
         .result-section {
             display: none;
         }
 
         .food-card {
             background-color: #f8f9fa;
-            border-radius: 40px; /* овальная карточка */
+            border-radius: 40px;
             padding: 30px;
             margin-top: 15px;
             border: 1px solid #eaeef2;
@@ -250,7 +268,7 @@
             background-color: #ff6b6b;
             color: white;
             padding: 8px 22px;
-            border-radius: 60px; /* овальный */
+            border-radius: 60px;
             font-weight: 700;
             font-size: 1.3rem;
             box-shadow: 0 4px 10px rgba(255, 107, 107, 0.3);
@@ -369,9 +387,16 @@
             .chat-send-btn {
                 padding: 16px;
             }
-            .daily-calories-card {
+            .params-grid {
+                grid-template-columns: 1fr;
+            }
+            .gender-group {
+                flex-wrap: wrap;
+            }
+            .daily-calories-result {
                 flex-direction: column;
                 align-items: flex-start;
+                gap: 10px;
             }
             .food-header {
                 flex-direction: column;
@@ -394,28 +419,61 @@
                 <i class="fas fa-robot" style="color:#2ecc71;"></i>
                 Food AI Assistant
             </h1>
-            <p class="subtitle">Опишите желаемое блюдо — я подберу идеальный вариант и посчитаю калории</p>
+            <p class="subtitle">Введите ваши параметры и опишите желаемое блюдо</p>
         </header>
 
         <div class="main-content">
-            <!-- Дневная норма калорий -->
-            <div class="daily-calories-card">
-                <div class="daily-calories-title">
-                    <i class="fas fa-fire" style="color:#2ecc71;"></i>
-                    Дневная норма
+            <!-- Блок параметров пользователя -->
+            <div class="user-params-card">
+                <div class="params-title">
+                    <i class="fas fa-user" style="color:#2ecc71;"></i>
+                    Ваши данные
                 </div>
-                <div style="display: flex; align-items: center; gap: 10px;">
-                    <span class="daily-calories-value" id="dailyCaloriesDisplay">2000</span>
-                    <span class="daily-calories-unit">ккал</span>
+                <div class="params-grid">
+                    <div class="param-item">
+                        <label>Возраст (лет)</label>
+                        <input type="number" id="age" value="30" min="1" max="120" step="1">
+                    </div>
+                    <div class="param-item">
+                        <label>Рост (см)</label>
+                        <input type="number" id="height" value="170" min="50" max="250" step="1">
+                    </div>
+                    <div class="param-item">
+                        <label>Вес (кг)</label>
+                        <input type="number" id="weight" value="70" min="20" max="300" step="0.1">
+                    </div>
+                    <div class="param-item">
+                        <label>Пол</label>
+                        <div class="gender-group">
+                            <label><input type="radio" name="gender" value="male" checked> Мужской</label>
+                            <label><input type="radio" name="gender" value="female"> Женский</label>
+                        </div>
+                    </div>
+                    <div class="param-item">
+                        <label>Уровень активности</label>
+                        <select id="activity">
+                            <option value="1.2">Минимальная (сидячая работа)</option>
+                            <option value="1.375">Низкая (лёгкие нагрузки 1-3 раза/нед)</option>
+                            <option value="1.55" selected>Средняя (тренировки 3-5 раз/нед)</option>
+                            <option value="1.725">Высокая (активная работа / спорт 6-7 раз/нед)</option>
+                            <option value="1.9">Очень высокая (спортсмены, тяжёлый труд)</option>
+                        </select>
+                    </div>
                 </div>
-                <div class="calories-adjust">
-                    <button id="decreaseCalories" title="Уменьшить">−</button>
-                    <input type="number" id="dailyCalories" value="2000" min="1000" max="4000" step="100">
-                    <button id="increaseCalories" title="Увеличить">+</button>
+
+                <!-- Расчётная дневная норма -->
+                <div class="daily-calories-result">
+                    <span class="daily-label"><i class="fas fa-fire" style="color:#2ecc71;"></i> Дневная норма калорий</span>
+                    <span>
+                        <span class="daily-value" id="dailyCalories">2000</span>
+                        <span class="daily-unit">ккал/день</span>
+                    </span>
                 </div>
+                <!-- Скрытое поле для отправки на бэкенд (необязательно, но оставим) -->
+                <input type="hidden" id="dailyCaloriesHidden" value="2000">
             </div>
 
-            <!-- Чат -->
+            <!-- Чат-интерфейс -->
             <div class="chat-section">
                 <div class="chat-input-group">
                     <input type="text" class="chat-input" id="queryInput"
@@ -455,27 +513,47 @@
     </div>
 
     <script>
-        // ⚠️ Замените на ваш реальный backend URL (Render или localhost)
+        // ⚠️ Замените на ваш реальный backend URL
         const API_URL = 'https://food-ai-assistant-9l1l.onrender.com'; // ваш backend
         // Для локального теста: const API_URL = 'http://localhost:8000';
 
-        // Элементы управления калориями
-        const dailyInput = document.getElementById('dailyCalories');
-        const dailyDisplay = document.getElementById('dailyCaloriesDisplay');
+        // Функция расчёта дневной нормы калорий (Миффлин-Сан Жеор)
+        function calculateDailyCalories() {
+            const age = parseInt(document.getElementById('age').value) || 30;
+            const height = parseInt(document.getElementById('height').value) || 170;
+            const weight = parseFloat(document.getElementById('weight').value) || 70;
+            const isMale = document.querySelector('input[name="gender"]:checked').value === 'male';
+            const activity = parseFloat(document.getElementById('activity').value) || 1.55;
 
-        function updateDailyDisplay() {
-            dailyDisplay.textContent = dailyInput.value;
+            let bmr;
+            if (isMale) {
+                bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+            } else {
+                bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+            }
+
+            const daily = Math.round(bmr * activity);
+            return daily;
         }
-        dailyInput.addEventListener('input', updateDailyDisplay);
 
-        document.getElementById('increaseCalories').addEventListener('click', () => {
-            dailyInput.value = Math.min(4000, parseInt(dailyInput.value) + 100);
-            updateDailyDisplay();
+        // Обновление отображения дневной нормы
+        function updateDailyCalories() {
+            const daily = calculateDailyCalories();
+            document.getElementById('dailyCalories').textContent = daily;
+            document.getElementById('dailyCaloriesHidden').value = daily;
+        }
+
+        // Привязываем обработчики ко всем полям, влияющим на расчёт
+        document.getElementById('age').addEventListener('input', updateDailyCalories);
+        document.getElementById('height').addEventListener('input', updateDailyCalories);
+        document.getElementById('weight').addEventListener('input', updateDailyCalories);
+        document.getElementById('activity').addEventListener('change', updateDailyCalories);
+        document.querySelectorAll('input[name="gender"]').forEach(radio => {
+            radio.addEventListener('change', updateDailyCalories);
         });
-        document.getElementById('decreaseCalories').addEventListener('click', () => {
-            dailyInput.value = Math.max(1000, parseInt(dailyInput.value) - 100);
-            updateDailyDisplay();
-        });
+
+        // Первоначальный расчёт
+        updateDailyCalories();
 
         // Проверка статуса сервера
         async function checkServerStatus() {
@@ -498,7 +576,7 @@
         // Основная функция получения рекомендации
         async function getRecommendation() {
             const query = document.getElementById('queryInput').value.trim();
-            const dailyCal = parseInt(dailyInput.value);
+            const dailyCal = parseInt(document.getElementById('dailyCaloriesHidden').value);
 
             if (!query) {
                 showError('Пожалуйста, напишите, что вы хотите');
